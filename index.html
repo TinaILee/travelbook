@@ -3,628 +3,1157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>奧捷匈孝親之旅</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jf-openhuninn-1.1/dist/jf-openhuninn-1.1.min.css">
+    <title>2027 奧捷匈雙飛 19 天浪漫孝親自駕奢華之旅</title>
     <style>
         :root {
-            --bg-color: #FFFCF6;
-            --border-color: #3E3A39;
-            --pink: #F2A497;
-            --yellow: #F6D27A;
-            --blue: #A8D3E6;
-            --green: #B9DAA5;
-            --border-width: 3px;
+            --primary-color: #1a365d;
+            --secondary-color: #c59b27;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --light-text: #718096;
+            --border-color: #e2e8f0;
+            --weather-bg: #ebf8ff;
+            --weather-text: #2b6cb0;
+            --wear-bg: #fefcbf;
+            --wear-text: #744210;
+            --hotel-bg: #f0fff4;
+            --hotel-text: #22543d;
         }
-        
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'jf-openhuninn-1.1', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
             background-color: var(--bg-color);
-            color: var(--border-color);
             margin: 0;
             padding: 0;
-            padding-top: 70px; /* Space for fixed menu */
-            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
         }
 
-        /* 頂端固定選單 */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background: var(--bg-color);
-            border-bottom: var(--border-width) solid var(--border-color);
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 10px;
-            z-index: 1000;
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2.2rem 1rem;
+            text-align: center;
         }
-        nav a {
-            text-decoration: none;
-            color: var(--border-color);
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
             font-weight: bold;
-            font-size: 1.1rem;
-            padding: 5px 10px;
-            border: var(--border-width) solid transparent;
-            border-radius: 15px;
-            transition: all 0.2s ease;
-        }
-        nav a:hover, nav a.active {
-            background: var(--yellow);
-            border-color: var(--border-color);
+            font-size: 1.05rem;
         }
 
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 15px;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 16px;
         }
 
-        /* 卡片共用設定 */
-        .card {
-            background: #fff;
-            border: var(--border-width) solid var(--border-color);
-            border-radius: 24px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 4px 4px 0 var(--border-color);
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
 
-        /* 首頁 Hero Section */
-        .hero {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .hero h1 {
-            font-size: 2.2rem;
-            margin: 10px 0;
-            text-shadow: 2px 2px 0 var(--yellow);
-        }
-        .countdown {
-            background: var(--pink);
-            display: inline-block;
-            padding: 10px 20px;
-            border: var(--border-width) solid var(--border-color);
-            border-radius: 20px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        /* SVG 動畫 */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .svg-float {
-            animation: float 3s ease-in-out infinite;
+        .info-item {
+            border-left: 3px solid var(--secondary-color);
+            padding-left: 10px;
         }
 
-        /* 標籤設計 */
-        .tag {
-            border: var(--border-width) solid var(--border-color);
-            border-radius: 12px;
-            padding: 5px 10px;
-            font-weight: bold;
-            display: inline-block;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        .tag.pink { background: var(--pink); }
-        .tag.yellow { background: var(--yellow); }
-        .tag.blue { background: var(--blue); }
-        .tag.green { background: var(--green); }
-        .tag.highlight {
-            background: var(--pink);
-            color: var(--border-color);
+        .info-item strong {
+            display: block;
+            color: var(--light-text);
+            font-size: 0.85rem;
         }
 
-        /* 航班資訊 */
-        .flight-info h2 {
-            border-bottom: var(--border-width) dashed var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        
-        /* 每日行程切換 */
-        .date-tabs {
+        /* RWD 響應式頁籤選單 */
+        .tabs {
             display: flex;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            gap: 10px;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .date-tabs::-webkit-scrollbar { display: none; }
-        
-        .date-tab {
-            flex: 0 0 auto;
-            border: var(--border-width) solid var(--border-color);
-            border-radius: 16px;
-            padding: 10px 15px;
-            background: #fff;
-            cursor: pointer;
-            font-weight: bold;
-            text-align: center;
-        }
-        .date-tab.active {
-            background: var(--blue);
-            transform: scale(1.05);
-            box-shadow: 2px 2px 0 var(--border-color);
-        }
-        
-        /* 彈跳動畫 */
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.95) translateY(10px); }
-            60% { opacity: 1; transform: scale(1.02) translateY(-2px); }
-            100% { transform: scale(1) translateY(0); }
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
         }
 
-        .timeline-content {
+        .tab-btn {
+            flex: 1 1 auto;
+            min-width: 110px;
+            padding: 14px 10px;
+            border: none;
+            background: none;
+            font-size: 0.98rem;
+            font-weight: bold;
+            color: var(--light-text);
+            cursor: pointer;
+            transition: 0.25s;
+            text-align: center;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn:hover {
+            background: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            background: #edf2f7;
+        }
+
+        .tab-content {
             display: none;
         }
-        .timeline-content.active {
+
+        .tab-content.active {
             display: block;
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* 時間軸設計 */
-        .timeline-box {
-            border-left: var(--border-width) dashed var(--border-color);
-            margin-left: 20px;
-            padding-left: 25px;
-            position: relative;
+        .day-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
         }
-        .timeline-box::before {
-            content: '';
-            position: absolute;
-            left: -13px;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            background: var(--yellow);
-            border: var(--border-width) solid var(--border-color);
-            border-radius: 50%;
+
+        .day-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
         }
-        .timeline-title {
-            font-size: 1.4rem;
+
+        .day-title {
+            font-size: 1.08rem;
             font-weight: bold;
-            margin-top: -5px;
+        }
+
+        .day-date {
+            white-space: nowrap;
+            font-size: 0.95rem;
+            background: rgba(255,255,255,0.15);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .day-body {
+            padding: 18px;
+        }
+
+        .route {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 14px;
+            font-size: 1.02rem;
+        }
+
+        .day-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: block;
+            background-color: #edf2f7;
+        }
+
+        .status-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .status-badge {
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .weather-badge {
+            background: var(--weather-bg);
+            color: var(--weather-text);
+        }
+
+        .wear-badge {
+            background: var(--wear-bg);
+            color: var(--wear-text);
+        }
+
+        .hotel-badge {
+            background: var(--hotel-bg);
+            color: var(--hotel-text);
+            font-weight: bold;
+        }
+
+        .day-details {
+            margin-bottom: 15px;
+            font-size: 0.98rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            background: #f7fafc;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border-left: 3px solid #cbd5e0;
+        }
+
+        .meta-item strong {
+            color: var(--primary-color);
+        }
+
+        /* 表格 RWD 滾動容器 */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            min-width: 540px;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #edf2f7;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* 行李清單專屬樣式 (維持沉穩深藍金配色) */
+        .packing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .packing-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+        }
+
+        .packing-card h4 {
+            margin: 0 0 12px 0;
+            color: var(--primary-color);
+            font-size: 1.08rem;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .check-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .check-list li {
             margin-bottom: 10px;
         }
 
-        /* 打勾清單 */
         .check-list label {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            gap: 10px;
             cursor: pointer;
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-        }
-        .check-list input {
-            display: none;
-        }
-        .check-list span::before {
-            content: "";
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            border: var(--border-width) solid var(--border-color);
-            border-radius: 8px;
-            margin-right: 12px;
-            background: #fff;
-            vertical-align: middle;
-            transition: all 0.2s;
-        }
-        .check-list input:checked + span::before {
-            background: var(--green);
-            box-shadow: inset 0 0 0 4px #fff;
-        }
-        .check-list input:checked + span {
-            text-decoration: line-through;
-            opacity: 0.6;
+            font-size: 0.95rem;
+            line-height: 1.45;
+            user-select: none;
         }
 
-        /* 插圖專區 */
-        .svg-container {
+        .check-list input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 19px;
+            height: 19px;
+            min-width: 19px;
+            border: 2px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 2px;
+            cursor: pointer;
+            position: relative;
+            background: #fff;
+            transition: all 0.2s;
+        }
+
+        .check-list input[type="checkbox"]:checked {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .check-list input[type="checkbox"]:checked::after {
+            content: "✓";
+            position: absolute;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            left: 3px;
+            top: -1px;
+        }
+
+        .check-list input[type="checkbox"]:checked + span {
+            text-decoration: line-through;
+            color: var(--light-text);
+        }
+
+        .packing-tip {
+            background: #fefcbf;
+            border-left: 4px solid var(--secondary-color);
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            font-size: 0.92rem;
+            color: #744210;
+        }
+
+        .reset-btn {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .reset-btn:hover {
+            background: #2c5282;
+        }
+
+        footer {
             text-align: center;
-            margin: 20px 0;
+            padding: 25px 15px;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* 手機版 RWD 斷點優化 */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.6rem 1rem;
+            }
+            header h1 {
+                font-size: 1.4rem;
+            }
+            .subtitle {
+                font-size: 0.92rem;
+            }
+            .info-card {
+                grid-template-columns: 1fr 1fr;
+                padding: 14px;
+                gap: 12px;
+            }
+            .tab-btn {
+                flex: 1 1 33.33%;
+                font-size: 0.88rem;
+                padding: 12px 6px;
+                min-width: auto;
+            }
+            .day-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .day-title {
+                font-size: 1.02rem;
+            }
+            .day-img {
+                height: 210px;
+            }
+            .status-box {
+                grid-template-columns: 1fr;
+            }
+            .packing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .info-card {
+                grid-template-columns: 1fr;
+            }
+            .tab-btn {
+                flex: 1 1 50%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- 固定選單 -->
-    <nav>
-        <a href="#home">首頁</a>
-        <a href="#flight">航班</a>
-        <a href="#itinerary">行程</a>
-        <a href="#checklist">清單</a>
-    </nav>
+<header>
+    <h1>2027 奧捷匈 19 天雙飛孝親自駕奢華之旅</h1>
+    <div class="subtitle">華航直飛 • 雙點進出 • 雙基地溫泉/湖景房 • CK童話小鎮過夜</div>
+</header>
 
-    <div class="container" id="home">
-        <!-- Hero Section -->
-        <div class="hero">
-            <div class="svg-container svg-float">
-                <!-- 自繪 SVG 城堡 -->
-                <svg viewBox="0 0 200 150" width="200" height="150">
-                    <!-- 雲朵 -->
-                    <path d="M20,50 Q30,30 50,40 Q70,30 80,50 Q90,60 70,70 L30,70 Q10,60 20,50 Z" fill="#fff" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
-                    <path d="M140,40 Q150,25 165,30 Q180,25 185,40 Q195,45 180,55 L145,55 Q130,45 140,40 Z" fill="#fff" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
-                    
-                    <!-- 城堡主體 -->
-                    <rect x="60" y="80" width="80" height="60" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" rx="5"/>
-                    <!-- 城堡門 -->
-                    <path d="M85,140 L85,110 A15 15 0 0 1 115 110 L115,140 Z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/>
-                    
-                    <!-- 塔樓1 -->
-                    <rect x="50" y="60" width="30" height="80" fill="#F2A497" stroke="#3E3A39" stroke-width="3" rx="5"/>
-                    <polygon points="45,60 65,30 85,60" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
-                    <!-- 塔樓2 -->
-                    <rect x="120" y="60" width="30" height="80" fill="#F2A497" stroke="#3E3A39" stroke-width="3" rx="5"/>
-                    <polygon points="115,60 135,30 155,60" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <h1>奧捷匈 孝親之旅</h1>
-            <div class="countdown" id="countdown-timer">準備出發！</div>
+<div class="container">
+    <div class="info-card">
+        <div class="info-item">
+            <strong>旅遊天數</strong>
+            19 天 16 夜
         </div>
-
-        <!-- 航班卡片 -->
-        <div class="card flight-info" id="flight">
-            <h2>✈️ 航班資訊</h2>
-            <div class="svg-container svg-float" style="animation-delay: 0.5s;">
-                <!-- 自繪 SVG 飛機 -->
-                <svg viewBox="0 0 150 80" width="150" height="80">
-                    <path d="M 20 40 L 70 40 L 110 20 L 120 25 C 130 30 130 50 120 55 L 70 60 L 20 60 C 10 60 10 40 20 40 Z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
-                    <path d="M 50 45 L 30 75 L 15 70 L 40 50" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
-                    <!-- 窗戶 -->
-                    <circle cx="60" cy="50" r="4" fill="#3E3A39"/>
-                    <circle cx="75" cy="50" r="4" fill="#3E3A39"/>
-                    <circle cx="90" cy="50" r="4" fill="#3E3A39"/>
-                </svg>
-            </div>
-            <p><strong>去程 (5/27)：</strong> 中華航空 CI63<br>TPE 23:10 ➔ VIE 06:30 (+1)</p>
-            <p><strong>回程 (6/13)：</strong> 中華航空 CI68<br>PRG 11:05 ➔ TPE 05:35 (+1)</p>
-            <span class="tag pink">直飛雙點進出</span>
-            <span class="tag green">行李 46kg/人</span>
+        <div class="info-item">
+            <strong>預定日期</strong>
+            2027/05/27 ~ 2027/06/14
         </div>
-
-        <!-- 每日行程 -->
-        <h2 id="itinerary" style="text-align:center;">🗓️ 每日行程</h2>
-        <div class="date-tabs">
-            <div class="date-tab active" onclick="showTab(0, this)">5/27<br><small>Day 1</small></div>
-            <div class="date-tab " onclick="showTab(1, this)">5/28<br><small>Day 2</small></div>
-            <div class="date-tab " onclick="showTab(2, this)">5/29<br><small>Day 3</small></div>
-            <div class="date-tab " onclick="showTab(3, this)">5/30<br><small>Day 4</small></div>
-            <div class="date-tab " onclick="showTab(4, this)">5/31<br><small>Day 5</small></div>
-            <div class="date-tab " onclick="showTab(5, this)">6/01<br><small>Day 6</small></div>
-            <div class="date-tab " onclick="showTab(6, this)">6/02<br><small>Day 7</small></div>
-            <div class="date-tab " onclick="showTab(7, this)">6/03<br><small>Day 8</small></div>
-            <div class="date-tab " onclick="showTab(8, this)">6/04<br><small>Day 9</small></div>
-            <div class="date-tab " onclick="showTab(9, this)">6/05<br><small>Day 10</small></div>
-            <div class="date-tab " onclick="showTab(10, this)">6/06<br><small>Day 11</small></div>
-            <div class="date-tab " onclick="showTab(11, this)">6/07<br><small>Day 12</small></div>
-            <div class="date-tab " onclick="showTab(12, this)">6/08<br><small>Day 13</small></div>
-            <div class="date-tab " onclick="showTab(13, this)">6/09<br><small>Day 14</small></div>
-            <div class="date-tab " onclick="showTab(14, this)">6/10<br><small>Day 15</small></div>
-            <div class="date-tab " onclick="showTab(15, this)">6/11<br><small>Day 16</small></div>
-            <div class="date-tab " onclick="showTab(16, this)">6/12<br><small>Day 17</small></div>
-            <div class="date-tab " onclick="showTab(17, this)">6/13<br><small>Day 18</small></div>
-            <div class="date-tab " onclick="showTab(18, this)">6/14<br><small>Day 19</small></div>
+        <div class="info-item">
+            <strong>航班資訊</strong>
+            中華航空 (CI) 直飛（維也納進、布拉格出）
         </div>
-
-        <!-- 行程內容 -->
-
-        <div class="timeline-content active" id="content-0">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">啟程飛往維也納</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag blue">✈️ 飛機</span>
-                        <span class="tag highlight">⭐ 帶著愉快的心情出發！</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> 機上</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-1">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">抵達維也納 ➔ 布達佩斯</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag yellow">🚗 包車</span>
-                        <span class="tag highlight">⭐ 必去：英雄廣場散步</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Up Hotel Budapest</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-2">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">國會大廈 ➔ 漁人堡</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag pink">🚢 遊船</span>
-                        <span class="tag highlight">⭐ 必去：多瑙河夕陽遊船</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Up Hotel Budapest</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-3">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">紐約咖啡館 ➔ 塞琴尼溫泉</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag green">🚶 散步</span>
-                        <span class="tag highlight">⭐ 必去：塞琴尼溫泉泡湯</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Up Hotel Budapest</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-4">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">移動至維也納</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag blue">🚄 國鐵</span>
-                        <span class="tag highlight">⭐ 必去：聖史蒂芬大教堂</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Adina Serviced Apts</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-5">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">熊布朗宮 ➔ 霍夫堡宮</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag yellow">🚶 散步</span>
-                        <span class="tag highlight">⭐ 必去：美泉宮皇家花園</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Adina Serviced Apts</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-6">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">搭高鐵前往薩爾茲堡</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag pink">🚄 高鐵</span>
-                        <span class="tag highlight">⭐ 必去：米拉貝爾花園</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Villa Floeckner</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-7">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">薩爾茲堡取車 ➔ 國王湖</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag green">🚗 自駕</span>
-                        <span class="tag highlight">⭐ 必去：國王湖搭船吃鱒魚</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> The View Modern</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-8">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">哈修塔特雙絕景</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag blue">🚗 自駕</span>
-                        <span class="tag highlight">⭐ 必去：達克斯坦冰洞</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> The View Modern</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-9">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">戈紹湖 ➔ 聖吉爾根</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag yellow">🚗 自駕</span>
-                        <span class="tag highlight">⭐ 必去：戈紹湖冰川倒影</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> The View Modern</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-10">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">沙夫山火車 ➔ 聖沃夫岡</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag pink">🚂 火車</span>
-                        <span class="tag highlight">⭐ 必去：復古蒸汽火車</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Brandauer's Villen</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-11">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">重返薩爾茲堡</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag green">🚗 自駕</span>
-                        <span class="tag highlight">⭐ 必去：薩爾茲堡城堡</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Villa Floeckner</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-12">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">海爾布倫宮 ➔ 慢活</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag blue">🚗 自駕</span>
-                        <span class="tag highlight">⭐ 必去：海爾布倫噴泉宮</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Villa Floeckner</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-13">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">薩爾茲堡 ➔ CK小鎮</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag yellow">🚗 包車</span>
-                        <span class="tag highlight">⭐ 必去：CK小鎮地窖烤肉</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> House and Garden</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-14">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">CK小鎮 ➔ 布拉格</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag pink">🚗 包車</span>
-                        <span class="tag highlight">⭐ 必去：無團客晨景散步</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Hotel Royal Prague</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-15">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">布拉格城堡區浪漫巡禮</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag green">🚶 散步</span>
-                        <span class="tag highlight">⭐ 必去：查理大橋夕陽</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Hotel Royal Prague</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-16">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">舊城廣場天文鐘 ➔ 採買</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag blue">🚶 散步</span>
-                        <span class="tag highlight">⭐ 必去：菠丹妮大採購</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> Hotel Royal Prague</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-17">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">優雅退房 ➔ 搭機返台</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag yellow">✈️ 飛機</span>
-                        <span class="tag highlight">⭐ 滿載46kg戰利品</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> 機上</p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-content " id="content-18">
-            <div class="card">
-                <div class="timeline-box">
-                    <div class="timeline-title">抵達台北溫暖的家</div>
-                    <div style="margin-bottom: 15px;">
-                        <span class="tag pink">🚗 專車</span>
-                        <span class="tag highlight">⭐ 平安到家！</span>
-                    </div>
-                    <p><strong>🏨 住宿：</strong> 溫暖的家</p>
-                </div>
-            </div>
-        </div>
-    
-        <!-- 清單專區 -->
-        <h2 id="checklist" style="text-align:center;">📝 待辦清單</h2>
-        <div class="card check-list">
-            <h3 style="margin-top:0; border-bottom: 3px dashed #3E3A39; padding-bottom:5px;">🧳 出發前準備</h3>
-            <label><input type="checkbox"><span>護照 (效期6個月以上)</span></label>
-            <label><input type="checkbox"><span>國際駕照與台灣駕照正本</span></label>
-            <label><input type="checkbox"><span>申根旅遊平安保險(英文版)</span></label>
-            <label><input type="checkbox"><span>兌換歐元與克朗現金</span></label>
-            <label><input type="checkbox"><span>下載離線地圖與預約憑證</span></label>
-        </div>
-
-        <div class="card check-list">
-            <h3 style="margin-top:0; border-bottom: 3px dashed #3E3A39; padding-bottom:5px;">🎒 行李必備清單</h3>
-            <label><input type="checkbox"><span>常備藥品 (長輩個人藥品、腸胃藥)</span></label>
-            <label><input type="checkbox"><span>雙電壓旅行快煮鍋 (隨時煮熱湯)</span></label>
-            <label><input type="checkbox"><span>好走的平底健走鞋</span></label>
-            <label><input type="checkbox"><span>防風防水連帽外套 (洋蔥式穿搭)</span></label>
-            <label><input type="checkbox"><span>歐規轉接頭與充電器</span></label>
-        </div>
-        
-        <div style="text-align:center; padding: 20px 0; font-size: 0.9rem; font-weight:bold;">
-            Made with ❤️ for Family Trip
+        <div class="info-item">
+            <strong>行李額度</strong>
+            託運行李 2 × 23kg / 人 (46kg)
         </div>
     </div>
 
-    <script>
-        function showTab(index, element) {
-            // 隱藏所有內容
-            document.querySelectorAll('.timeline-content').forEach(el => {
-                el.classList.remove('active');
-            });
-            // 取消所有標籤的 active 狀態
-            document.querySelectorAll('.date-tab').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            // 顯示選中的內容，並加上 active 類別來觸發彈跳動畫
-            document.getElementById('content-' + index).classList.add('active');
-            element.classList.add('active');
-            
-            // 滾動標籤列讓它置中
-            element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('itinerary', this)">📅 每日行程</button>
+        <button class="tab-btn" onclick="switchTab('highlights', this)">👑 行程亮點</button>
+        <button class="tab-btn" onclick="switchTab('flight', this)">🏨 航班與住宿</button>
+        <button class="tab-btn" onclick="switchTab('budget', this)">💰 費用總計</button>
+        <button class="tab-btn" onclick="switchTab('packing', this)">🧳 行李準備清單</button>
+    </div>
 
-        // 簡單的出發倒數 (設定為 2027/05/27)
-        const targetDate = new Date('2027-05-27T23:10:00');
-        const updateCountdown = () => {
-            const now = new Date();
-            const diff = targetDate - now;
-            if(diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById('countdown-timer').innerText = `距離出發還有 ${days} 天！✈️`;
-            } else {
-                document.getElementById('countdown-timer').innerText = '啟程出發啦！🎉';
+    <!-- 分頁 1：每日行程 -->
+    <div id="itinerary" class="tab-content active">
+        
+        <!-- Day 1 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 1 | 台北 (TPE) ✈️ 啟程飛往維也納</span>
+                <span class="day-date">05/27 (三)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">桃園國際機場二航廈 ➔ 深夜直飛維也納</div>
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 26°C (台灣出發) / 機艙恆溫</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 鬆緊運動長褲 + T 恤 + 防風連帽外套。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> 中華航空豪華客機</div>
+                </div>
+                <div class="day-details">
+                    搭乘中華航空深夜直飛航班前往奧地利維也納。憑中信華航聯名卡預約 7 人座專車送機至桃園機場二航廈，優雅啟程。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 機上享用 / 機上享用</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 2 | 抵達維也納 ➔ 包車前往布達佩斯</span>
+                <span class="day-date">05/28 (四)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">維也納機場 ➔ 布達佩斯第 6 區 ➔ 英雄廣場</div>
+                <img src="https://images.unsplash.com/photo-1551867633-194f125bddfa?auto=format&fit=crop&w=1000&q=80" alt="布達佩斯多瑙河畔風光" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 14°C – 25°C (晴朗舒適)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 短袖 + 薄風衣外套，太陽眼鏡。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Up Hotel Budapest (已訂)</div>
+                </div>
+                <div class="day-details">
+                    清晨抵達維也納，預約專車直接前往布達佩斯第 6 區辦理入住。下午漫步英雄廣場適應時差，晚上享用當地美味牛肉湯。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 匈牙利牛肉湯特色餐 / 經典在地料理</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 3 | 布達佩斯經典風華 ➔ 多瑙河夕陽遊船</span>
+                <span class="day-date">05/29 (五)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">國會大廈 ➔ 漁人堡 ➔ 馬加什教堂 ➔ 夕陽遊船</div>
+                <img src="https://images.unsplash.com/photo-1565426873118-a17ed65d7429?auto=format&fit=crop&w=1000&q=80" alt="布達佩斯國會大廈黃金夜景" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">☀️ <strong>氣溫：</strong> 15°C – 26°C (陽光充足)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 輕便短袖/薄長袖 + 健走鞋，搭船攜帶防風外套。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Up Hotel Budapest (已訂)</div>
+                </div>
+                <div class="day-details">
+                    上午入內參觀奢華的國會大廈，午後前往漁人堡俯瞰全城絕美風光。傍晚安排多瑙河專屬遊船，欣賞黃金夜景。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 經典鴨胸料理 / 多瑙河船上晚餐</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 4 | 紐約咖啡館 ➔ 塞琴尼溫泉體驗</span>
+                <span class="day-date">05/30 (六)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">紐約咖啡館 (New York Café) ➔ 塞琴尼溫泉 ➔ 中央市場</div>
+                <img src="https://images.unsplash.com/photo-1549877452-9c387954fbc2?auto=format&fit=crop&w=1000&q=80" alt="布達佩斯塞琴尼溫泉浴場" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 16°C – 27°C (氣候溫爽)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 優雅休閒服，攜帶泳衣與大毛巾。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Up Hotel Budapest (已訂)</div>
+                </div>
+                <div class="day-details">
+                    上午在「世界最美咖啡館」享用優雅早餐，下午體驗巴洛克風情的塞琴尼溫泉浴場，徹底泡湯消除疲勞。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 紐約咖啡館早餐 / 中央市場在地小吃 / 主廚特色餐</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 5 | 移動至維也納 ➔ 聖史蒂芬大教堂</span>
+                <span class="day-date">05/31 (日)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">布達佩斯 ➔ 專車/國鐵至維也納 ➔ 舊城區散步</div>
+                <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=1000&q=80" alt="維也納聖史蒂芬大教堂與舊城區" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 13°C – 23°C (溫暖宜人)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 薄長袖 + 針織外套，舒適休閒鞋。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Adina Serviced Apartments (已訂)</div>
+                </div>
+                <div class="day-details">
+                    搭乘專車返回維也納入住市區飯店。下午漫步優雅的舊城區，觀賞聖史蒂芬大教堂，隨後去薩赫咖啡館品嚐正宗蛋糕。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 維也納炸牛排 / 薩赫咖啡館午茶</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 6 | 維也納皇家巡禮 ➔ 熊布朗宮 (美泉宮)</span>
+                <span class="day-date">06/01 (一)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">熊布朗宮 (Schönbrunn Palace) ➔ 霍夫堡宮</div>
+                <img src="https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?auto=format&fit=crop&w=1000&q=80" alt="維也納熊布朗宮皇家花園" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">☀️ <strong>氣溫：</strong> 14°C – 24°C (陽光舒適)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 輕便襯衫/T恤 + 遮陽帽，花園步道極為平坦好走。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Adina Serviced Apartments (已訂)</div>
+                </div>
+                <div class="day-details">
+                    專程探訪熊布朗宮皇家後花園，遠眺維也納市景，步道完全無階梯適合長輩。下午走訪霍夫堡宮感受哈布斯堡王朝奢華氣息。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 宮廷景觀餐廳 / 奧式肋排餐</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 7 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 7 | 搭高鐵 (ÖBB) 前往薩爾茲堡</span>
+                <span class="day-date">06/02 (二)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">維也納車站 ➔ 國鐵頭等艙 ➔ 薩爾茲堡米拉貝爾花園</div>
+                <img src="https://images.unsplash.com/photo-1595867818082-083862f3d630?auto=format&fit=crop&w=1000&q=80" alt="薩爾茲堡米拉貝爾花園與城堡遠景" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">⛅ <strong>氣溫：</strong> 11°C – 22°C (古城涼爽)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 長膝休閒褲 + 薄外套。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Villa Floeckner B&B (已訂)</div>
+                </div>
+                <div class="day-details">
+                    搭乘奧地利國鐵 (ÖBB) 高鐵頭等艙直達音樂之都薩爾茲堡並辦理 Check-in。下午漫步米拉貝爾花園與糧食胡同（莫札特故居）。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 高鐵精緻餐點 / 薩爾茲堡修道院啤酒餐廳</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 8 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 8 | 薩爾茲堡取車 ➔ 德國國王湖 ➔ 湖區</span>
+                <span class="day-date">06/03 (三)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">薩爾茲堡取車 ➔ 國王湖 (Königssee) ➔ 藍紹教堂 ➔ 巴德伊瑟 (Bad Ischl)</div>
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1000&q=80" alt="德國國王湖聖巴多羅買紅頂教堂" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 10°C – 21°C (湖面風大)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 防風連帽外套 + 長褲，折疊傘。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> The View Modern Panorama (已訂)</div>
+                </div>
+                <div class="day-details">
+                    辦理自駕取車直奔國王湖，搭乘電動船看紅頂教堂並品嚐野生煙燻鱒魚；午後漫步藍紹教堂溪畔，隨後入住湖區飯店。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 湖畔煙燻鱒魚特餐 / 湖區在地料理</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 9 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 9 | 哈修塔特雙絕景（鹽洞 ＋ 冰洞）</span>
+                <span class="day-date">06/04 (四)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">哈修塔特 (Hallstatt) ➔ 世界最古老鹽洞 ➔ 達克斯坦冰洞</div>
+                <img src="https://images.unsplash.com/photo-1520520118475-1b4e46303247?auto=format&fit=crop&w=1000&q=80" alt="奧地利哈修塔特經典明信片湖景" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">❄️ <strong>山下：</strong> 12°C - 19°C | 🧊 <strong>冰洞內：</strong> -2°C – 0°C</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 進冰洞必備「輕羽絨外套 + 禦寒長褲 + 厚襪防滑鞋」。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> The View Modern Panorama (已訂)</div>
+                </div>
+                <div class="day-details">
+                    搭纜車參觀哈修塔特鹽洞與明信片角拍照；午後前往對岸體驗震撼的冰洞，欣賞巨大自然冰雕奇觀。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 哈修塔特湖畔烤魚 / 湖區風味餐</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 10 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 10 | 戈紹湖 ➔ 聖吉爾根纜車</span>
+                <span class="day-date">06/05 (五)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">戈紹湖 (Gosausee) ➔ 聖吉爾根 (St. Gilgen) 十二角峰纜車</div>
+                <img src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=1000&q=80" alt="阿爾卑斯戈紹湖與達克斯坦雪峰倒影" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 11°C – 22°C (山頂較風大)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 舒適平底健走鞋 + 防風外套。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> The View Modern Panorama (已訂/續住)</div>
+                </div>
+                <div class="day-details">
+                    上午前往平坦如鏡的戈紹湖散步看冰川倒影。下午至聖吉爾根搭乘纜車俯瞰沃夫岡群湖全景。繼續連住巴德伊瑟免搬行李。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 戈紹湖畔簡餐 / 巴德伊瑟在地晚餐</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 11 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 11 | 沙夫山蒸汽火車 ➔ 聖沃夫岡湖景慢活</span>
+                <span class="day-date">06/06 (六)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">巴德伊瑟 ➔ 聖沃夫岡 (St. Wolfgang) ➔ 沙夫山火車 ➔ 換飯店</div>
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80" alt="沃夫岡湖區群山與湖畔度假風光" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">☀️ <strong>氣溫：</strong> 13°C – 23°C (陽光舒爽)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 休閒服/針織衫 + 墨鏡，步調極度放慢。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Seehotel Brandauer’s Villen (已訂)</div>
+                </div>
+                <div class="day-details">
+                    前往聖沃夫岡搭乘紅色復古蒸汽火車登頂沙夫山。下午入住夢幻湖景飯店 Seehotel Brandauer’s Villen，享受私人碼頭與無敵湖景。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店陽台早餐 / 湖畔景觀餐廳 / 聖沃夫岡湖景晚餐</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 12 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 12 | 湖畔晨光 ➔ 重返薩爾茲堡 ➔ 薩爾茲堡城堡</span>
+                <span class="day-date">06/07 (日)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">聖沃夫岡 ➔ 重返薩爾茲堡 ➔ 薩爾茲堡城堡纜車</div>
+                <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1000&q=80" alt="薩爾茲堡要塞城堡與薩爾札克河全景" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 12°C – 23°C (宜人)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 輕鬆休閒服 + 薄外套。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Villa Floeckner B&B (已訂)</div>
+                </div>
+                <div class="day-details">
+                    享受莊園豐盛湖畔早餐後，開車返回薩爾茲堡辦理第二階段入住。搭乘城堡纜車登頂薩爾茲堡城堡，俯瞰全城老街與薩爾札克河美景。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 薩爾茲堡特色餐 / 奧式炸豬排</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 13 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 13 | 海爾布倫宮 (噴泉宮) ➔ 慢活一日</span>
+                <span class="day-date">06/08 (一)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">海爾布倫宮 (Hellbrunn Palace) ➔ 薩爾茲堡古城</div>
+                <img src="https://images.unsplash.com/photo-1599946347371-68eb71b16afc?auto=format&fit=crop&w=1000&q=80" alt="薩爾茲堡皇宮庭園綠意步道" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 13°C – 24°C (舒適)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 薄長袖 + 抓地力佳休閒鞋。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Villa Floeckner B&B (已訂)</div>
+                </div>
+                <div class="day-details">
+                    參觀具備機關噴泉的海爾布倫宮（綠意盎然且步道極平坦），午後隨意在古城咖啡館喝咖啡放鬆，享受無壓力的古城日。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 宮廷花園餐廳 / 在地主廚料理</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 14 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 14 | 薩爾茲堡 (還車/包車) ➔ 童話 CK 小鎮過夜</span>
+                <span class="day-date">06/09 (二)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">薩爾茲堡 ➔ 跨國專車 ➔ 庫倫洛夫 (Český Krumlov)</div>
+                <img src="https://images.unsplash.com/photo-1513581166391-887a96ddeafd?auto=format&fit=crop&w=1000&q=80" alt="捷克庫倫洛夫CK小鎮紅瓦童話俯瞰" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 11°C – 21°C (古鎮涼爽)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 薄外套 + 平底耐磨鞋（CK 全是石板路坡道）。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> House and Garden by KH (已訂)</div>
+                </div>
+                <div class="day-details">
+                    專車跨國直達捷克最美童話小鎮 CK，入住小鎮特色民宿(附廚房)。下午漫步紅瓦白牆巷弄與伏爾塔瓦河畔，晚上享用地窖餐廳晚餐。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / CK 烤肉餐 / 地窖餐廳風味餐</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 15 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 15 | CK 清晨空靈巡禮 ➔ 包車前往布拉格</span>
+                <span class="day-date">06/10 (三)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">CK 小鎮清晨散步 ➔ 專車至布拉格 ➔ Hotel Royal Prague</div>
+                <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1000&q=80" alt="布拉格伏爾塔瓦河畔與紅屋頂" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌧️ <strong>氣溫：</strong> 12°C – 20°C (偶有微雨/鋒面)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 防潑水外套 + 雨傘，搭車放鬆身心。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Hotel Royal Prague (已訂)</div>
+                </div>
+                <div class="day-details">
+                    享受完全無團客干擾的清晨 CK 小鎮，中午搭包車直達布拉格第 8 區靜音飯店。傍晚散步至伏爾塔瓦河畔看景。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 捷克鴨肉特餐 / 伏爾塔瓦河畔晚餐</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 16 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 16 | 布拉格城堡區浪漫巡禮</span>
+                <span class="day-date">06/11 (四)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">布拉格城堡 ➔ 聖維特大教堂 ➔ 查理大橋夕陽</div>
+                <img src="https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=1000&q=80" alt="布拉格查理大橋與城堡區夕陽" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">☀️ <strong>氣溫：</strong> 13°C – 24°C (晴朗)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 透氣短袖 + 薄外套 + 厚底健走鞋。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Hotel Royal Prague (已訂)</div>
+                </div>
+                <div class="day-details">
+                    搭乘電車登頂參觀城堡區與聖維特大教堂，午後沿石板路散步至查理大橋看夕陽，盡情拍照留念。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 查理大橋景觀餐廳 / 捷克牛肉燉湯</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 17 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 17 | 舊城廣場天文鐘 ➔ 採買與打包 46kg 戰利品</span>
+                <span class="day-date">06/12 (五)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">舊城區 ➔ 天文鐘 ➔ 泰恩教堂 ➔ 菠丹妮採買</div>
+                <img src="https://images.unsplash.com/photo-1592906209472-a36b1f3782ef?auto=format&fit=crop&w=1000&q=80" alt="布拉格舊城廣場與泰恩教堂" class="day-img" loading="lazy">
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 13°C – 23°C (涼爽)</div>
+                    <div class="status-badge wear-badge">👔 <strong>穿搭：</strong> 街頭休閒服，攜帶隨身購物袋。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> Hotel Royal Prague (已訂)</div>
+                </div>
+                <div class="day-details">
+                    整天在平坦的舊城區漫步，觀賞天文鐘整點報時，採購菠丹妮與蔓藤花紋等名產，回飯店優雅打包 46kg 戰利品。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 捷克傳統烤豬腳 / 告別晚宴</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 18 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 18 | 優雅退房 ➔ 機場專車 (30分鐘) ✈️ 告別歐洲</span>
+                <span class="day-date">06/13 (六)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">飯店退房 ➔ 機場大車 (30 分鐘) ➔ 布拉格機場 (PRG)</div>
+                <div class="status-box">
+                    <div class="status-badge weather-badge">🌤️ <strong>氣溫：</strong> 14°C – 24°C / 機艙恆溫</div>
+                    <div class="status-badge wear-badge">👔 <strong>搭機穿搭：</strong> 鬆緊長褲 + 棉質 T 恤 + 防風外套。</div>
+                    <div class="status-badge hotel-badge">🏨 <strong>住宿：</strong> 中華航空豪華客機</div>
+                </div>
+                <div class="day-details">
+                    享用早餐後，搭乘預約 7 人座大車 30 分鐘優雅直達布拉格機場 (PRG)，搭乘華航直飛班機滿載美好回憶返台。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 飯店早餐 / 機場貴賓室 / 機上享用</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 19 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 19 | 抵達台北 (TPE) ➔ 專車接送返家</span>
+                <span class="day-date">06/14 (日)</span>
+            </div>
+            <div class="day-body">
+                <div class="route">桃園國際機場二航廈 ➔ 專車直達家門口</div>
+                <div class="day-details">
+                    班機順利抵達桃園機場二航廈，接送專車幫忙載運 6 件大行李，平穩送達溫馨的家。
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><strong>餐食：</strong> 機上享用 / 溫暖的家</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 分頁 2：行程亮點 -->
+    <div id="highlights" class="tab-content">
+        <div class="day-card">
+            <div class="day-body">
+                <h3>👑 19 天極致孝親五大亮點</h3>
+                <ul>
+                    <li><strong>100% 飯店精準對齊：</strong> 完全依據你的預訂日排列，維也納、湖區 4 晚與 CK 小鎮過夜無縫銜接。</li>
+                    <li><strong>3+1 湖區住宿完美混搭：</strong> 3晚巴德伊瑟免搬行李放射狀遊玩，加上 1晚聖沃夫岡夢幻湖畔莊園。</li>
+                    <li><strong>CK 小鎮過夜體驗：</strong> 獨享清晨無團客的古鎮浪漫風光，避免一日遊長途拉車之苦。</li>
+                    <li><strong>雙首都＋音樂古城：</strong> 完整收錄布達佩斯、維也納美泉宮、薩爾茲堡城堡與布拉格舊城。</li>
+                    <li><strong>46kg 行李與接送尊榮：</strong> 機場大車全包，告別大眾運輸扛行李折騰。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分頁 3：航班與住宿 -->
+    <div id="flight" class="tab-content">
+        <div class="day-card">
+            <div class="day-body">
+                <h3>✈️ 航班資訊</h3>
+                <p><strong>去程：</strong> 2027/05/27 (三) 中華航空 CI63 | 桃園 (TPE) 23:10 ➔ 維也納 (VIE) 06:30 (+1)</p>
+                <p><strong>回程：</strong> 2027/06/13 (六) 中華航空 CI68 | 布拉格 (PRG) 11:05 ➔ 桃園 (TPE) 05:35 (+1)</p>
+                <hr>
+                <h3>🏨 8 大住宿精準對照表</h3>
+                <ul>
+                    <li><strong>5/28 - 5/31 (3 晚)：</strong> 布達佩斯 Up Hotel Budapest (含早餐)</li>
+                    <li><strong>5/31 - 6/02 (2 晚)：</strong> 維也納 Adina Serviced Apartments (無早餐)</li>
+                    <li><strong>6/02 - 6/03 (1 晚)：</strong> 薩爾茲堡 Villa Floeckner Bed and Breakfast (含早餐)</li>
+                    <li><strong>6/03 - 6/06 (3 晚)：</strong> 巴德伊瑟 The View Modern Panorama (無早餐)</li>
+                    <li><strong>6/06 - 6/07 (1 晚)：</strong> 聖沃夫岡 Seehotel Brandauer’s Villen 湖景房 (含早餐)</li>
+                    <li><strong>6/07 - 6/09 (2 晚)：</strong> 薩爾茲堡 Villa Floeckner Bed and Breakfast (含早餐)</li>
+                    <li><strong>6/09 - 6/10 (1 晚)：</strong> 庫倫洛夫 CK小鎮 House and Garden by KH (附廚房)</li>
+                    <li><strong>6/10 - 6/13 (3 晚)：</strong> 布拉格 Hotel Royal Prague (含早餐)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 分頁 4：費用總計 -->
+    <div id="budget" class="tab-content">
+        <div class="day-card">
+            <div class="day-body">
+                <h3>💰 2027 奧捷匈 19 天【機加酒】最終花費總表（3 人總計）</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目分類</th>
+                                <th>住宿日期 / 內容明細</th>
+                                <th>原幣別金額</th>
+                                <th>換算台幣總額 (估)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>✈️ <strong>來回機票</strong></td>
+                                <td><strong>華航直飛 雙點進出 (3 人)</strong></td>
+                                <td>—</td>
+                                <td><strong>NT$ 102,000</strong></td>
+                            </tr>
+                            <tr>
+                                <td>🏨 <strong>布達佩斯</strong></td>
+                                <td>05/28–05/31 (3晚) Up Hotel Budapest (含早)</td>
+                                <td>USD 498.65</td>
+                                <td>約 NT$ 16,056</td>
+                            </tr>
+                            <tr>
+                                <td>🏨 <strong>維也納</strong></td>
+                                <td>05/31–06/02 (2晚) Adina Serviced Apts (無早)</td>
+                                <td>EUR 288.52</td>
+                                <td>約 NT$ 10,156</td>
+                            </tr>
+                            <tr>
+                                <td>🏨 <strong>薩爾茲堡</strong></td>
+                                <td>06/02–06/03 (1晚) Villa Floeckner B&B (含早)</td>
+                                <td>EUR 146.69</td>
+                                <td>約 NT$ 5,163</td>
+                            </tr>
+                            <tr>
+                                <td>🏨 <strong>巴德伊瑟</strong></td>
+                                <td>06/03–06/06 (3晚) The View Modern Panorama (無早)</td>
+                                <td>EUR 647.61</td>
+                                <td>約 NT$ 22,796</td>
+                            </tr>
+                            <tr>
+                                <td>🏨 <strong>聖沃夫岡</strong></td>
+                                <td>06/06–06/07 (1晚) <strong>Seehotel Brandauer’s Villen 湖景房</strong> (含早)</td>
+                                <td>EUR 382.30</td>
+                                <td>約 NT$ 13,457</td>
+                            </tr>
+                            <tr>
+                                <td>🏨 <strong>薩爾茲堡</strong></td>
+                                <td>06/07–06/09 (2晚) Villa Floeckner B&B (含早)</td>
+                                <td>EUR 298.76</td>
+                                <td>約 NT$ 10,516</td>
+                            </tr>
+                            <tr>
+                                <td>🏨 <strong>CK小鎮</strong></td>
+                                <td>06/09–06/10 (1晚) House and Garden by KH (無早/有廚房)</td>
+                                <td>EUR 249.61</td>
+                                <td>約 NT$ 8,786</td>
+                            </tr>
+                            <tr>
+                                <td>🏨 <strong>布拉格</strong></td>
+                                <td>06/10–06/13 (3晚) Hotel Royal Prague (含早)</td>
+                                <td>EUR 439.80</td>
+                                <td>約 NT$ 15,481</td>
+                            </tr>
+                            <tr>
+                                <td>🏛️ <strong>城市稅</strong></td>
+                                <td>布達佩斯與布拉格入住現場繳納</td>
+                                <td>—</td>
+                                <td>約 NT$ 1,344</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align:right;"><strong>✅ 機加酒最終總額 (3 人)</strong></td>
+                                <td><strong>約 NT$ 205,755</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align:right;"><strong>💡 平均每人機加酒花費</strong></td>
+                                <td><strong>約 NT$ 68,585</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分頁 5：行李準備清單 (可勾選且自動記憶狀態) -->
+    <div id="packing" class="tab-content">
+        <div class="day-card">
+            <div class="day-body">
+                <h3>🧳 歐洲 5–6 月初夏 19 天行李準備清單（自動儲存勾選進度）</h3>
+                <div class="packing-tip">
+                    💡 <strong>奧捷匈 5 月底～6 月中打包關鍵：</strong>日夜溫差大（10°C – 26°C），且 6/4 達克斯坦冰洞內僅 0°C，務必採「洋蔥式穿搭」；此外，歐洲飯店普遍<strong>不提供牙刷牙膏與室內拖鞋</strong>，且部分公寓（維也納、巴德伊瑟、CK小鎮）無附早餐並有廚房，攜帶快煮鍋或沖泡湯包會非常實用！
+                </div>
+                <button class="reset-btn" onclick="resetCheckboxes()">🔄 重設所有勾選狀態</button>
+
+                <div class="packing-grid">
+                    <!-- 類別 1：重要證件與財物 -->
+                    <div class="packing-card">
+                        <h4>🛂 重要證件與防盜財物</h4>
+                        <ul class="check-list">
+                            <li><label><input type="checkbox" id="chk-1"><span>護照正本（確認效期 6 個月以上）＋ 護照影本 2 份</span></label></li>
+                            <li><label><input type="checkbox" id="chk-2"><span>台灣駕照正本 ＋ 國際駕照（薩爾茲堡取車必備）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-3"><span>申根旅遊平安險 / 不便險英文版保單證明</span></label></li>
+                            <li><label><input type="checkbox" id="chk-4"><span>電子機票、飯店確認單、租車與包車憑證（紙本＋手機離線備份）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-5"><span>歐元現金（含小面額紙鈔與 1–2 歐元硬幣，歐洲上廁所常需投幣）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-6"><span>海外高回饋信用卡 2–3 張（開啟海外交易與預借現金密碼以備無人刷卡機）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-7"><span>貼身防盜腰包 / 防搶斜背包 ＋ 拉鍊防盜扣（布拉格、布達佩斯人多處必防扒手）</span></label></li>
+                        </ul>
+                    </div>
+
+                    <!-- 類別 2：衣物與穿搭 (5-6月洋蔥式) -->
+                    <div class="packing-card">
+                        <h4>🧥 衣物與鞋履（洋蔥式穿搭）</h4>
+                        <ul class="check-list">
+                            <li><label><input type="checkbox" id="chk-8"><span>透氣短袖上衣 / 薄長袖（約 6–8 件，白天出太陽會熱）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-9"><span>薄針織外套 / 襯衫（早晚與室內冷氣房微涼）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-10"><span>防風防水連帽外套（湖區搭船、山頂與偶遇鋒面微雨必備）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-11"><span>輕量羽絨外套 / 鋪棉背心（Day 9 進入 0°C 冰洞與高海拔山頂禦寒）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-12"><span>好穿好走的長褲 3–4 件（避免過緊牛仔褲，長途搭車更舒適）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-13"><span>吸震防滑健走鞋 1–2 雙（歐洲大量石板路與坡道，長輩鞋底抓地力最重要）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-14"><span>泳衣、泳帽與快乾大毛巾（Day 4 布達佩斯塞琴尼溫泉體驗）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-15"><span>遮陽帽、抗 UV 太陽眼鏡（歐洲初夏陽光刺眼）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-16"><span>貼身內衣褲、襪子（含厚襪進冰洞）、睡衣、摺疊衣架</span></label></li>
+                        </ul>
+                    </div>
+
+                    <!-- 類別 3：3C 電子與車用配備 -->
+                    <div class="packing-card">
+                        <h4>🔌 3C 電子與自駕必備</h4>
+                        <ul class="check-list">
+                            <li><label><input type="checkbox" id="chk-17"><span>歐規雙圓孔轉接頭 2–3 個（Type C / F，4.0mm 與 4.8mm 規格）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-18"><span>多孔 USB 充電頭 ＋ 充電線（手機、手錶、相機同時充）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-19"><span>行動電源（務必放隨身手提行李，不可託運！）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-20"><span>歐洲跨國網卡 / eSIM（確認涵蓋奧地利、捷克、匈牙利、德國）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-21"><span>車用手機支架 ＋ 車充（薩爾茲堡自駕導航超實用）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-22"><span>手機掛繩（拍照防手滑，也能防搶防竊）</span></label></li>
+                        </ul>
+                    </div>
+
+                    <!-- 類別 4：孝親常備藥品與保健 -->
+                    <div class="packing-card">
+                        <h4>💊 孝親常備藥品與舒緩小物</h4>
+                        <ul class="check-list">
+                            <li><label><input type="checkbox" id="chk-23"><span>長輩個人慢性病處方藥（建議多帶 3–5 天備用份量並放隨身行李）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-24"><span>腸胃藥、止瀉藥、益生菌（適應歐洲飲食與生冷沙拉）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-25"><span>感冒藥、退燒止痛藥、喉糖 / 口腔噴霧</span></label></li>
+                            <li><label><input type="checkbox" id="chk-26"><span>暈車藥（湖區山路與搭船遊湖備用）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-27"><span>痠痛貼布 / 腿部舒緩霜 / 壓力襪（歐洲天天萬步走，晚上舒緩小腿）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-28"><span>OK 繃、外傷藥膏、人工淚液 / 眼藥水（歐洲氣候乾燥）</span></label></li>
+                        </ul>
+                    </div>
+
+                    <!-- 類別 5：盥洗保養與生活雜物 -->
+                    <div class="packing-card">
+                        <h4>🧴 盥洗保養與實用雜物</h4>
+                        <ul class="check-list">
+                            <li><label><input type="checkbox" id="chk-29"><span>牙刷、牙膏、洗面乳（歐洲環保法規，飯店幾乎不主動提供）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-30"><span>室內防滑拖鞋（歐洲飯店與公寓極少提供免洗拖鞋）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-31"><span>高保濕乳液、護唇膏、護手霜、防曬乳（歐洲乾燥且紫外線強）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-32"><span>雙電壓旅行快煮鍋 ＋ 環保餐具（公寓自煮早餐、泡泡麵喝熱湯神器）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-33"><span>保溫瓶（歐洲餐廳少供熱水，早起在飯店裝滿熱水給長輩喝）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-34"><span>抗風輕量摺疊傘（放託運行李，歐洲陣雨說來就來）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-35"><span>隨身面紙、濕紙巾、酒精乾洗手</span></label></li>
+                            <li><label><input type="checkbox" id="chk-36"><span>大型可摺疊購物袋 ＋ 行李秤（裝戰利品、精準控制 46kg 額度）</span></label></li>
+                            <li><label><input type="checkbox" id="chk-37"><span>飛機上舒眠三寶：頸枕、眼罩、耳塞（長途夜航必備）</span></label></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2027 奧捷匈孝親自駕之旅專屬行程手冊 | Designed for Family
+</footer>
+
+<script>
+    function switchTab(tabId, btnElement) {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        if (btnElement) {
+            btnElement.classList.add('active');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 自動儲存行李清單勾選狀態到瀏覽器 localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkboxes = document.querySelectorAll('#packing input[type="checkbox"]');
+        checkboxes.forEach(cb => {
+            const savedState = localStorage.getItem('eu_trip_' + cb.id);
+            if (savedState === 'true') {
+                cb.checked = true;
             }
-        };
-        updateCountdown();
-        setInterval(updateCountdown, 1000 * 60 * 60); // 每小時更新
-    </script>
+            cb.addEventListener('change', () => {
+                localStorage.setItem('eu_trip_' + cb.id, cb.checked);
+            });
+        });
+    });
+
+    function resetCheckboxes() {
+        if (confirm('確定要清除所有行李清單的勾選紀錄嗎？')) {
+            const checkboxes = document.querySelectorAll('#packing input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                localStorage.removeItem('eu_trip_' + cb.id);
+            });
+        }
+    }
+</script>
+
 </body>
 </html>
